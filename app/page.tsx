@@ -444,21 +444,15 @@ if (isLoading) {
     e.preventDefault();
     addIngredient();
   }}
-  className="flex gap-2"
+  className="relative z-50 flex gap-2 pointer-events-auto"
+
 >
-<input
-  ref={inputRef}
-  type="text"
-  inputMode="text"
-  enterKeyHint="done"
-  autoComplete="off"
-  autoCorrect="off"
+<textarea
   value={input}
   onChange={(e) => setInput(e.target.value)}
-  onInput={(e) => setInput(e.currentTarget.value)}
-  onTouchStart={(e) => e.stopPropagation()}
   placeholder="例：卵、鶏肉、キャベツ"
-className="min-w-0 flex-1 rounded-2xl border border-orange-100 bg-white px-4 py-4 text-[16px] text-slate-900 outline-none focus:border-orange-400"
+  rows={1}
+className="relative z-50 min-w-0 flex-1 resize-none rounded-2xl border border-orange-100 bg-white px-4 py-4 text-[16px] text-slate-900 outline-none focus:border-orange-400 pointer-events-auto"
 />
 
   <button
