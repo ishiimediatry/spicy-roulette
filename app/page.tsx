@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   AlertTriangle,
@@ -343,7 +343,7 @@ function Bar({ label, value }: { label: string; value: number }) {
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
 const [input, setInput] = useState("");
-
+const inputRef = useRef<HTMLInputElement>(null);
 useEffect(() => {
   const timer = setTimeout(() => {
     setIsLoading(false);
@@ -447,6 +447,7 @@ if (isLoading) {
   className="flex gap-2"
 >
 <input
+  ref={inputRef}
   type="text"
   inputMode="text"
   enterKeyHint="done"
