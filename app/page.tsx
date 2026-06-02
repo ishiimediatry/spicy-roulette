@@ -458,7 +458,7 @@ if (isLoading) {
   onInput={(e) => setInput(e.currentTarget.value)}
   onTouchStart={(e) => e.stopPropagation()}
   placeholder="例：卵、鶏肉、キャベツ"
-  className="min-w-0 flex-1 rounded-2xl border border-orange-100 bg-orange-50 px-4 py-3 text-base text-slate-900 outline-none focus:border-orange-400"
+className="min-w-0 flex-1 rounded-2xl border border-orange-100 bg-white px-4 py-4 text-[16px] text-slate-900 outline-none focus:border-orange-400"
 />
 
   <button
