@@ -342,6 +342,7 @@ function Bar({ label, value }: { label: string; value: number }) {
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
+const [input, setInput] = useState("");
 
 useEffect(() => {
   const timer = setTimeout(() => {
@@ -351,7 +352,6 @@ useEffect(() => {
   return () => clearTimeout(timer);
 }, []);
 
-const [input, setInput] = useState("");
   const [pantry, setPantry] = useState(["卵", "ねぎ", "玉ねぎ", "トマト", "牛肉"]);
   const [selected, setSelected] = useState<Recipe | null>(null);
   const [isSpinning, setIsSpinning] = useState(false);
@@ -439,18 +439,29 @@ if (isLoading) {
             <div className="space-y-5">
               <h2 className="text-xl font-bold">冷蔵庫リスト</h2>
 
-              <div className="flex gap-2">
-                <input
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  onKeyDown={(e) => e.key === "Enter" && addIngredient()}
-                  placeholder="例：卵、鶏肉、キャベツ"
-                  className="min-w-0 flex-1 rounded-2xl border border-orange-100 bg-orange-50 px-4 py-3 outline-none focus:border-orange-400"
-                />
-                <Button onClick={addIngredient} className="px-4">
-                  <Plus size={18} />
-                </Button>
-              </div>
+<form
+  onSubmit={(e) => {
+    e.preventDefault();
+    addIngredient();
+  }}
+  className="flex gap-2"
+>
+  <input
+    type="text"
+    inputMode="text"
+    value={input}
+    onChange={(e) => setInput(e.target.value)}
+    placeholder="例：卵、鶏肉、キャベツ"
+    className="min-w-0 flex-1 rounded-2xl border border-orange-100 bg-orange-50 px-4 py-3 text-base text-slate-900 outline-none focus:border-orange-400"
+  />
+
+  <button
+    type="submit"
+    className="rounded-2xl bg-slate-950 px-5 py-3 text-white"
+  >
+    ＋
+  </button>
+</form>
 
               <div className="flex flex-wrap gap-2">
                 {pantry.map((item) => (
