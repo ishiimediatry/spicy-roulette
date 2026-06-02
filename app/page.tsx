@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   AlertTriangle,
@@ -341,7 +341,17 @@ function Bar({ label, value }: { label: string; value: number }) {
 }
 
 export default function Home() {
-  const [input, setInput] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+
+useEffect(() => {
+  const timer = setTimeout(() => {
+    setIsLoading(false);
+  }, 2000);
+
+  return () => clearTimeout(timer);
+}, []);
+
+const [input, setInput] = useState("");
   const [pantry, setPantry] = useState(["卵", "ねぎ", "玉ねぎ", "トマト", "牛肉"]);
   const [selected, setSelected] = useState<Recipe | null>(null);
   const [isSpinning, setIsSpinning] = useState(false);
@@ -352,7 +362,27 @@ export default function Home() {
     () => (selected ? createDetailedSteps(selected) : []),
     [selected]
   );
+if (isLoading) {
+  return (
+    <main className="flex min-h-screen items-center justify-center bg-orange-50">
+      <div className="text-center">
+        <div className="mb-6 text-8xl">🌶️</div>
 
+        <h1 className="text-3xl font-black text-orange-600">
+          スパイシールーレット
+        </h1>
+
+        <p className="mt-4 text-gray-600">
+          今夜の激辛を選定中...
+        </p>
+
+        <div className="mt-6 text-3xl animate-spin">
+          🔥
+        </div>
+      </div>
+    </main>
+  );
+}
   const addIngredient = () => {
     const next = input.trim();
     if (!next) return;
