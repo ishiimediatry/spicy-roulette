@@ -446,14 +446,19 @@ if (isLoading) {
   }}
   className="flex gap-2"
 >
-  <input
-    type="text"
-    inputMode="text"
-    value={input}
-    onChange={(e) => setInput(e.target.value)}
-    placeholder="例：卵、鶏肉、キャベツ"
-    className="min-w-0 flex-1 rounded-2xl border border-orange-100 bg-orange-50 px-4 py-3 text-base text-slate-900 outline-none focus:border-orange-400"
-  />
+<input
+  type="text"
+  inputMode="text"
+  enterKeyHint="done"
+  autoComplete="off"
+  autoCorrect="off"
+  value={input}
+  onChange={(e) => setInput(e.target.value)}
+  onInput={(e) => setInput(e.currentTarget.value)}
+  onTouchStart={(e) => e.stopPropagation()}
+  placeholder="例：卵、鶏肉、キャベツ"
+  className="min-w-0 flex-1 rounded-2xl border border-orange-100 bg-orange-50 px-4 py-3 text-base text-slate-900 outline-none focus:border-orange-400"
+/>
 
   <button
     type="submit"
