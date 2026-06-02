@@ -389,7 +389,17 @@ if (isLoading) {
     if (!pantry.includes(next)) setPantry([...pantry, next]);
     setInput("");
   };
+const askIngredient = () => {
+  const next = window.prompt("追加する食材を入力してください");
+  if (!next) return;
 
+  const trimmed = next.trim();
+  if (!trimmed) return;
+
+  if (!pantry.includes(trimmed)) {
+    setPantry([...pantry, trimmed]);
+  }
+};
   const removeIngredient = (item: string) => {
     setPantry(pantry.filter((x) => x !== item));
   };
@@ -449,7 +459,7 @@ if (isLoading) {
 
   <button
     type="button"
-    onClick={addIngredient}
+onClick={askIngredient}
     className="rounded-2xl bg-black px-5 text-white"
   >
     ＋
