@@ -353,6 +353,15 @@ useEffect(() => {
 }, []);
 
   const [pantry, setPantry] = useState(["卵", "ねぎ", "玉ねぎ", "トマト", "牛肉"]);
+  const COMMON_INGREDIENTS = [
+  "鶏肉","豚肉","牛肉","ベーコン","ソーセージ",
+  "卵","豆腐","チーズ",
+  "キャベツ","玉ねぎ","にんじん","じゃがいも",
+  "ピーマン","もやし","白菜","大根",
+  "トマト","きゅうり","なす","ブロッコリー",
+  "きのこ","しめじ","えのき",
+  "ご飯","パスタ","うどん"
+];
   const [selected, setSelected] = useState<Recipe | null>(null);
   const [isSpinning, setIsSpinning] = useState(false);
   const [spinCount, setSpinCount] = useState(0);
@@ -449,21 +458,21 @@ const askIngredient = () => {
             <div className="space-y-5">
               <h2 className="text-xl font-bold">冷蔵庫リスト</h2>
 
-<div className="flex gap-2">
-  <input
-    value={input}
-    onChange={(e) => setInput(e.target.value)}
-    placeholder="例：卵、鶏肉、キャベツ"
-    className="w-full rounded-2xl border border-orange-200 bg-white p-4 text-[16px] text-black"
-  />
-
-  <button
-    type="button"
-onClick={askIngredient}
-    className="rounded-2xl bg-black px-5 text-white"
-  >
-    ＋
-  </button>
+<div className="flex flex-wrap gap-2">
+  {COMMON_INGREDIENTS.map((food) => (
+    <button
+      key={food}
+      type="button"
+      onClick={() => {
+        if (!pantry.includes(food)) {
+          setPantry([...pantry, food]);
+        }
+      }}
+      className="rounded-full border border-orange-200 bg-orange-50 px-3 py-2 text-sm"
+    >
+      {food}
+    </button>
+  ))}
 </div>
 
               <div className="flex flex-wrap gap-2">
