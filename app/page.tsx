@@ -439,29 +439,22 @@ if (isLoading) {
             <div className="space-y-5">
               <h2 className="text-xl font-bold">冷蔵庫リスト</h2>
 
-<form
-  onSubmit={(e) => {
-    e.preventDefault();
-    addIngredient();
-  }}
-  className="relative z-50 flex gap-2 pointer-events-auto"
-
->
-<textarea
-  value={input}
-  onChange={(e) => setInput(e.target.value)}
-  placeholder="例：卵、鶏肉、キャベツ"
-  rows={1}
-className="relative z-50 min-w-0 flex-1 resize-none rounded-2xl border border-orange-100 bg-white px-4 py-4 text-[16px] text-slate-900 outline-none focus:border-orange-400 pointer-events-auto"
-/>
+<div className="flex gap-2">
+  <input
+    value={input}
+    onChange={(e) => setInput(e.target.value)}
+    placeholder="例：卵、鶏肉、キャベツ"
+    className="w-full rounded-2xl border border-orange-200 bg-white p-4 text-[16px] text-black"
+  />
 
   <button
-    type="submit"
-    className="rounded-2xl bg-slate-950 px-5 py-3 text-white"
+    type="button"
+    onClick={addIngredient}
+    className="rounded-2xl bg-black px-5 text-white"
   >
     ＋
   </button>
-</form>
+</div>
 
               <div className="flex flex-wrap gap-2">
                 {pantry.map((item) => (
