@@ -460,7 +460,13 @@ const askIngredient = () => {
 
   <button
     type="button"
-    onClick={askIngredient}
+onClick={() => {
+  if (input.trim()) {
+    addIngredient();
+  } else {
+    askIngredient();
+  }
+}}
     className="rounded-2xl bg-slate-950 px-5 py-3 text-white"
   >
     ＋
